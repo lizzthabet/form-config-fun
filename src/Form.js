@@ -6,9 +6,23 @@ import { FORM_STATUS, FormStatusMessage } from './FormStatusMessage';
 export function Form(props) {
   const { title, formConfig } = props
 
-  // Create the form value state from configuration
+  /*
+   * The form component keeps two pieces of state:
+   *
+   * - formValue: a data representation of the form,
+   *              including an entry for each field
+   *              that indicates its current value,
+   *              whether or not it's required, and
+   *              whether or not it's enabled
+   *
+   * - formStatus: either incomplete, complete, or
+   *              error state
+   */
+
+  // Create the form value state from its configuration
   const initialFormValue = configToFormValue(formConfig)
 
+  // Set pieces of form state
   const [formValue, setFormValue] = useState(initialFormValue)
   const [formStatus, setFormStatus] = useState(FORM_STATUS.Incomplete)
 
